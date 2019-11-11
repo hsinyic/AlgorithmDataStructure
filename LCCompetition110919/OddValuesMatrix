@@ -1,0 +1,27 @@
+/**
+ * @param {number} n
+ * @param {number} m
+ * @param {number[][]} indices
+ * @return {number}
+ */
+var oddCells = function (n, m, indices) {
+    // var arr = new Array(n).fill(0);
+    // arr = arr.map(i => new Array(m).fill(0));
+    var count = 0 
+    var countRow = {};
+    var countCol = {};
+    for (let j = 0; j < indices.length; j++) {
+        countRow[indices[j][0]] = (countRow[indices[j][0]] === undefined) ? 1 : countRow[indices[j][0]]++;
+        countCol[indices[j][1]] = (countCol[indices[j][1]] === undefined) ? 1 : countCol[indices[j][1]]++;
+    }
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j< m; j++){
+            if (( countRow[i] || 0 + countCol[j] || 0 ) % 2 === 1){
+                count ++;
+            }
+        }
+    }
+    return count;
+};
+
+oddCells(2,2,[[1,1],[0,0]]);
